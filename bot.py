@@ -149,7 +149,7 @@ async def total(update: Update, context: ContextTypes.DEFAULT_TYPE):
 if __name__ == '__main__':
     application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
     job_queue = application.job_queue
-    job_minute = job_queue.run_daily(statistic, time=datetime.time(hour=2, minute=59))
+    job_minute = job_queue.run_daily(statistic, time=datetime.time(hour=21, minute=59))
 
     application.add_handler(CommandHandler('start', start))
     application.add_handler(CommandHandler('help', help))
@@ -161,7 +161,7 @@ if __name__ == '__main__':
     application.add_handler(MessageHandler(filters.Regex(pattern=r'Добавить запись'), add_expense_button))
     application.add_handler(MessageHandler(filters.TEXT, all_text_message))
     application.add_handler(CallbackQueryHandler(del_expense))
-    # application.run_polling() # если нужно запустить в polling-режиме
+    # application.run_polling() # если нужно запустить в polling-режиме (закомментируй код ниже)
     application.run_webhook(
         listen="0.0.0.0",
         port=PORT,
